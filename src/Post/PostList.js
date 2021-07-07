@@ -3,16 +3,16 @@ import React, { useState, useEffect } from "react";
 import CommentCreate from "../Comment/CommentCreate";
 import CommentList from "../Comment/CommentList";
 
-export default () => {
+const PostList = () => {
   const [posts, setPosts] = useState({});
 
-  const fetchPosts = async () => {
-    const res = await axios.get("http://localhost:4000/posts");
-
-    setPosts(res.data);
-  };
-
   useEffect(() => {
+    const fetchPosts = async () => {
+      const res = await axios.get("http://localhost:4000/posts");
+
+      setPosts(res.data);
+    };
+
     fetchPosts();
   }, []);
 
@@ -34,3 +34,5 @@ export default () => {
 
   return <div className="d-flex flex-row flex-wrap">{renderedPosts}</div>;
 };
+
+export default PostList;
